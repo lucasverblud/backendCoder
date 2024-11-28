@@ -42,5 +42,16 @@
 		"stock": 78,
 		"category": "C",
 		"thumbnail": "file_4855_07112024_231154.jpg"
+	},
+	{
+		"id": 6,
+		"title": "Producto G",
+		"description": "G",
+		"code": "1G",
+		"price": 66,
+		"status": false,
+		"stock": 2,
+		"category": "G",
+		"thumbnail": null
 	}
 ]

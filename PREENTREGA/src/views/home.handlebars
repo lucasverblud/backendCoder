@@ -1,0 +1,23 @@
+<header>
+<h1>Home - Products</h1>
+</header>
+
+<main>
+    <section>
+        <h3>Products</h3>
+        {{!-- Uso de nomenclatura BEM (B de bloque, E de elemento y M de modificador)--}}
+        <div class="products">
+            <div class="products__list">
+                <ul class="products__list__item" id="products-list"></ul>
+            </div>
+            <button id="btn-refresh-products-list">Recargar Lista</button>
+        </div>
+    </section>
+</main>
+
+
+{{!-- El script de socket.io debe estar antes que home.js 
+<script src="/socket.io/socket.io.js"></script>
+<script src="/api/public/js/home.socket.js"></script>
+--}}
+<script src="/api/public/js/products.js"></script>
