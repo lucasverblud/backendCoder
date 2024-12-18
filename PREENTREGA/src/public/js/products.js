@@ -2,10 +2,9 @@ const productsList = document.getElementById("products-list");
 const btnRefreshproductsList = document.getElementById("btn-refresh-products-list");
 
 const loadproductsList = async () => {
-    const response = await fetch("/api/products", { method: "GET" });
+    const response = await fetch("/api/products", { method: "GET" });   
     const data = await response.json();
-    const products = data.payload;
-
+    const products = data.payload.docs;
     productsList.innerText = "";
 
     products.forEach((product) => {

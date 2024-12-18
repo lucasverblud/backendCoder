@@ -2,10 +2,11 @@ import express from "express";
 
 import { config as configHandlebars } from "./config/handlebars.config.js";
 import { config as configWebsocket } from "./config/websocket.config.js";
+import { connectDB } from "./config/mongoose.config.js";
 
 // Importación de enrutadores
-import routerCarts from "./routes/cart.router.js";
 import routerProducts from "./routes/product.router.js";
+import routerCarts from "./routes/cart.router.js";
 import routerViewHome from "./routes/home.view.router.js";
 
 // Se crea una instancia de la aplicación Express
@@ -13,6 +14,9 @@ const app = express();
 
 // Se define el puerto en el que el servidor escuchará las solicitudes
 const PORT = 8080;
+
+// Conexión con la Base de Datos del Cloud de MongoDB
+connectDB();
 
 // Declaración de archivos estáticos desde la carpeta 'public'
 // en la ruta 'http://localhost:8080/api/public'
