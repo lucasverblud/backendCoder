@@ -11,6 +11,10 @@
                 <ul class="products__list__item" id="products-list"></ul>
             </div>
             <button id="btn-refresh-products-list">Recargar Lista</button>
+            <button id="btn-sort-asc">Ordenar Ascendente</button>
+            <button id="btn-sort-desc">Ordenar Descendente</button>
+            <!-- Botón Crear Producto -->
+            <button id="btn-create-product">Crear Producto</button>
         </div>
     </section>
 </main>
@@ -21,3 +25,10 @@
 <script src="/api/public/js/home.socket.js"></script>
 --}}
 <script src="/api/public/js/products.js"></script>
+<script>
+    // Redirigir al hacer click en el botón de crear producto
+    document.getElementById('btn-create-product').addEventListener('click', function() {
+        window.location.href = 'http://localhost:8080/realTimeProducts';  // Redirige a la URL
+    });
+</script>
+
