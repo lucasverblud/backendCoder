@@ -71,7 +71,6 @@ router.get("/cart/:id", async (req, res) => {
     try {
         // Reutiliza la lógica de cartManager
         const cart = await cartManager.getOneById(req.params.id);
-        console.log(cart);
 
         if (!cart) {
             return res.status(404).render("cart", { error: "Carrito no encontrado", title: "Carrito de Compras" });

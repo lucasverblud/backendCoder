@@ -6,9 +6,9 @@
         <p>Precio: ${{this.price}}</p>
         <p>Categoría: {{this.category}}</p>
         <!-- Opción 1: Botón para agregar al carrito directamente -->
-        <button onclick="addToCart('{{this._id}}')">Agregar al carrito</button>
+        <button onclick="addToCart('{{this.id}}')">Agregar al carrito</button>
         <!-- Opción 2: Link para ver los detalles del producto -->
-        <a href="/products/{{this._id}}">Ver detalles</a>
+        <a href="/products/{{this.id}}">Ver detalles</a>
     </div>
     {{/each}}
 </div>
@@ -27,7 +27,8 @@
 <script>
     async function addToCart(productId) {
         try {
-            const response = await fetch(`/api/carts/12345/products/${productId}`, { method: "POST" });
+            console.log(productId);
+            const response = await fetch(`/api/carts/675e2bc2fa1e670ca779a543/products/${productId}`, { method: "POST" });
             if (response.ok) {
                 alert("Producto agregado al carrito.");
             } else {
