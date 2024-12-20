@@ -1,44 +1,40 @@
-<h1>Lista de Productos</h1>
-<div>
+<h1>{{title}}</h1>
+<div class="products">
     {{#each products}}
-        <div class="product">
-            <h3>{{this.title}}</h3>
-            <p>{{this.description}}</p>
-            <p>Precio: ${{this.price}}</p>
-            <p>Categoría: {{this.category}}</p>
-            <a href="/products/{{this._id}}" class="btn btn-primary">Ver Detalles</a>
-            <button class="btn btn-success" onclick="addToCart('{{this._id}}')">Agregar al Carrito</button>
-        </div>
+    <div class="product">
+        <h2>{{this.title}}</h2>
+        <p>Precio: ${{this.price}}</p>
+        <p>Categoría: {{this.category}}</p>
+        <!-- Opción 1: Botón para agregar al carrito directamente -->
+        <button onclick="addToCart('{{this._id}}')">Agregar al carrito</button>
+        <!-- Opción 2: Link para ver los detalles del producto -->
+        <a href="/products/{{this._id}}">Ver detalles</a>
+    </div>
     {{/each}}
 </div>
 
+<!-- Paginación -->
 <div class="pagination">
-    {{#if pagination.page}}
-        {{#if pagination.page}}
-            <a href="/home?page={{decrement pagination.page}}">Anterior</a>
-        {{/if}}
-        <span>Página {{pagination.page}}</span>
-        {{#if pagination.limit}}
-            <a href="/home?page={{increment pagination.page}}">Siguiente</a>
-        {{/if}}
+    {{#if pagination.hasPrevPage}}
+    <a href="/products?page={{pagination.prevPage}}">Anterior</a>
+    {{/if}}
+    <span>Página {{pagination.currentPage}} de {{pagination.totalPages}}</span>
+    {{#if pagination.hasNextPage}}
+    <a href="/products?page={{pagination.nextPage}}">Siguiente</a>
     {{/if}}
 </div>
 
 <script>
-    function addToCart(productId) {
-        fetch('/cart', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ productId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
+    async function addToCart(productId) {
+        try {
+            const response = await fetch(`/api/carts/12345/products/${productId}`, { method: "POST" });
+            if (response.ok) {
+                alert("Producto agregado al carrito.");
             } else {
-                alert('Error al agregar al carrito');
+                alert("Error al agregar el producto al carrito.");
             }
-        })
-        .catch(error => console.error('Error:', error));
+        } catch (error) {
+            console.error("Error al agregar al carrito:", error);
+        }
     }
 </script>
