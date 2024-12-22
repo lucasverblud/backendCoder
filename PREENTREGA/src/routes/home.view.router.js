@@ -56,10 +56,16 @@ router.get("/products/:pid", async (req, res) => {
         if (!product) {
             return res.status(404).render("productDetails", { error: "Producto no encontrado" });
         }
-
+        
         res.render("productDetails", {
             title: `Detalles de ${product.title}`,
-            product,
+            description: product.description,
+            code: product.code,
+            price: product.price,
+            status: product.status,
+            stock: product.stock,
+            category: product.category,
+            id: product.id,
         });
     } catch (error) {
         res.status(500).render("error", { error: error.message });

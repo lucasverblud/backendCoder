@@ -1,11 +1,9 @@
 const productsList = document.getElementById("products-list");
 const btnRefreshproductsList = document.getElementById("btn-refresh-products-list");
-const btnSortAsc = document.getElementById("btn-sort-asc");
-const btnSortDesc = document.getElementById("btn-sort-desc");
 
 // Función para cargar los productos, con la opción de ordenarlos
-const loadproductsList = async (sortOrder = '') => {
-    const response = await fetch(`/api/products${sortOrder}`, { method: "GET" });   
+const loadproductsList = async () => {
+    const response = await fetch(`/api/products`, { method: "GET" });   
     const data = await response.json();
     const products = data.payload.docs;
 
@@ -22,18 +20,6 @@ const loadproductsList = async (sortOrder = '') => {
 btnRefreshproductsList.addEventListener("click", () => {
     loadproductsList();
     console.log("¡Lista recargada!");
-});
-
-// Ordenar los productos en orden ascendente
-btnSortAsc.addEventListener("click", () => {
-    loadproductsList('?sort=asc');  // '1' es para orden ascendente
-    console.log("Ordenando Ascendente");
-});
-
-// Ordenar los productos en orden descendente
-btnSortDesc.addEventListener("click", () => {
-    loadproductsList('?sort=desc'); // '-1' es para orden descendente
-    console.log("Ordenando Descendente");
 });
 
 // Cargar la lista de productos cuando se ingrese o recargue la página

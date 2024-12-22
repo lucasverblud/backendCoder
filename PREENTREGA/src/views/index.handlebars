@@ -1,13 +1,21 @@
 <h1>{{title}}</h1>
+
+<!-- Controles de Ordenamiento -->
+<div class="sorting">
+    <span>Ordenar por precio:</span>
+    <a href="/products?page={{pagination.currentPage}}&sort=asc" class="sort-button">⬆️</a>
+    <a href="/products?page={{pagination.currentPage}}&sort=desc" class="sort-button">⬇️</a>
+</div>
+
 <div class="products">
     {{#each products}}
     <div class="product">
         <h2>{{this.title}}</h2>
         <p>Precio: ${{this.price}}</p>
         <p>Categoría: {{this.category}}</p>
-        <!-- Opción 1: Botón para agregar al carrito directamente -->
+        <!-- Botón para agregar al carrito -->
         <button onclick="addToCart('{{this.id}}')">Agregar al carrito</button>
-        <!-- Opción 2: Link para ver los detalles del producto -->
+        <!-- Link para ver detalles -->
         <a href="/products/{{this.id}}">Ver detalles</a>
     </div>
     {{/each}}
@@ -16,11 +24,11 @@
 <!-- Paginación -->
 <div class="pagination">
     {{#if pagination.hasPrevPage}}
-    <a href="/products?page={{pagination.prevPage}}">Anterior</a>
+    <a href="/products?page={{pagination.prevPage}}&sort={{pagination.sort}}">Anterior</a>
     {{/if}}
     <span>Página {{pagination.currentPage}} de {{pagination.totalPages}}</span>
     {{#if pagination.hasNextPage}}
-    <a href="/products?page={{pagination.nextPage}}">Siguiente</a>
+    <a href="/products?page={{pagination.nextPage}}&sort={{pagination.sort}}">Siguiente</a>
     {{/if}}
 </div>
 
